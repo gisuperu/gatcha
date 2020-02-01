@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="gatcha.css">
+  <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+  <title>ガチャ</title>
+</head>
+<body>
+  <script>
+  let no_rare = 0;
+  let no_srare = 0;
+  let no_urare = 0;
+  let price = 0;
+  let noN = 0;
+  let noO = 0;
+  let noFe = 0;
+  let noF = 0;
+  let noAs = 0;
+  let noSc = 0;
+  let noTc = 0;
+  let rare = ["N", "O", "Fe"]
+  let srare = ["F", "As"]
+  let urare = ["Sc", "Tc"]
+  function gatcha(btt){//btt=0はリトライ・btt=1は画像
+    let N = 0;
+    let O = 0;
+    let Fe = 0;
+    let F = 0;
+    let As = 0;
+    let Sc = 0;
+    let Tc = 0;
+    var obj1 = document.getElementById("automation");
+    var auto = obj1.value;//自動または手動
+    var obj2 = document.getElementById("continue");
+    var times = obj2.value;//何回回すか
+    if(auto == "auto" && btt == 0){
+      for( var i=0; i<times; i++ ){
+        //alert("a");
+        var ind = i + 1;
+        var id = ("000000000" + ind).slice(-2);
+        var img = document.getElementById("card" + id);
+        var num = Math.floor(100*Math.random());
+        //alert(id);
+        //alert(img);
+        if(i < 9){
+          //alert("9kaimade");
+          if(num < 70){
+            var R = Math.floor(3*Math.random());
+            //alert(R);
+            img.src = "R_" + rare[R] + ".png";
+            no_rare++;
+            if(R == 0){
+              N++;
+              noN++;
+            }else if(R ==1){
+              O++;
+              noO++;
+            }else{
+              Fe++;
+              noFe++;
+            }
+          }else if(num < 99){
+            var SR = Math.floor(2*Math.random());
+            //alert(SR);
+            img.src = "SR_" + srare[SR] + ".png";
+            no_srare++;
+            if(SR ==0){
+              F++;
+              noF++;
+            }else{
+              As++;
+              noAs++;
+            }
+          }else{
+            var UR = Math.floor(2*Math.random());
+            //alert(UR);
+            img.src = "UR_" + urare[UR] + ".png";
+            no_urare++;
+            if(UR ==0){
+              Sc++;
+              noSc++;
+            }else{
+              Tc++;
+              noTc++;
+            }
+          }
+        }else if(i >= 9){
+          if(num < 80){
+            var SR = Math.floor(2*Math.random());
+            //alert(SR);
+            img.src = "SR_" + srare[SR] + ".png";
+            no_srare++;
+            if(SR ==0){
+              F++;
+              noF++;
+            }else{
+              As++;
+              noAs++;
+            }
+          }else{
+            var UR = Math.floor(2*Math.random());
+            //alert(UR);
+            img.src = "UR_" + urare[UR] + ".png";
+            no_urare++;
+            if(UR ==0){
+              Sc++;
+              noSc++;
+            }else{
+              Tc++;
+              noTc++;
+            }
+          }
+        }
+        //alert("mararu");
+      }
+      var total = no_rare + no_srare + no_urare;
+      price = price + Math.round((N + O + Fe + F + As + Sc + Tc)*3*(101-times));
+      document.getElementById("price").innerHTML = price + "円";
+      document.getElementById("no_rare").innerHTML = no_rare+"枚（確率"+Math.round(no_rare/total*100*100)/100+"％）";
+      document.getElementById("no_srare").innerHTML = no_srare+"枚（確率"+Math.round(no_srare/total*100*100)/100+"％）";
+      document.getElementById("no_urare").innerHTML = no_urare+"枚（確率"+Math.round(no_urare/total*100*100)/100+"％）";
+      document.getElementById("N").innerHTML = noN+"枚（確率"+Math.round(noN/total*100*100)/100+"％）";
+      document.getElementById("O").innerHTML = noO+"枚（確率"+Math.round(noO/total*100*100)/100+"％）";
+      document.getElementById("Fe").innerHTML = noFe+"枚（確率"+Math.round(noFe/total*100*100)/100+"％）";
+      document.getElementById("F").innerHTML = noF+"枚（確率"+Math.round(noF/total*100*100)/100+"％）";
+      document.getElementById("As").innerHTML = noAs+"枚（確率"+Math.round(noAs/total*100*100)/100+"％）";
+      document.getElementById("Sc").innerHTML = noSc+"枚（確率"+Math.round(noSc/total*100*100)/100+"％）";
+      document.getElementById("Tc").innerHTML = noTc+"枚（確率"+Math.round(noTc/total*100*100)/100+"％）";
+    }else if(auto == "own" && btt >= 1){
+      //alert("a");
+      var id = ("00000000" + btt).slice(-2);
+      var img = document.getElementById("card" + id);
+      var num = Math.floor(100*Math.random());
+      //alert(id);
+      //alert(img);
+      if(num < 70){
+        var R = Math.floor(3*Math.random());
+        //alert(R);
+        img.src = "R_" + rare[R] + ".png";
+        no_rare++;
+        if(R == 0){
+          N++;
+          noN++;
+        }else if(R ==1){
+          O++;
+          noO++;
+        }else{
+          Fe++;
+          noFe++;
+        }
+      }else if(num < 99){
+        var SR = Math.floor(2*Math.random());
+        //alert(SR);
+        img.src = "SR_" + srare[SR] + ".png";
+        no_srare++;
+        if(SR ==0){
+          F++;
+          noF++;
+        }else{
+          As++;
+          noAs++;
+        }
+      }else{
+        var UR = Math.floor(2*Math.random());
+        //alert(UR);
+        img.src = "UR_" + urare[UR] + ".png";
+        no_urare++;
+        if(UR ==0){
+          Sc++;
+          noSc++;
+        }else{
+          Tc++;
+          noTc++;
+        }
+      }
+      var total = no_rare + no_srare + no_urare;
+      price = price + Math.round((N + O + Fe + F + As + Sc + Tc)*3*90);
+      document.getElementById("price").innerHTML = price + "円";
+      document.getElementById("no_rare").innerHTML = no_rare+"枚（確率"+Math.round(no_rare/total*100*100)/100+"％）";
+      document.getElementById("no_srare").innerHTML = no_srare+"枚（確率"+Math.round(no_srare/total*100*100)/100+"％）";
+      document.getElementById("no_urare").innerHTML = no_urare+"枚（確率"+Math.round(no_urare/total*100*100)/100+"％）";
+      document.getElementById("N").innerHTML = noN+"枚（確率"+Math.round(noN/total*100*100)/100+"％）";
+      document.getElementById("O").innerHTML = noO+"枚（確率"+Math.round(noO/total*100*100)/100+"％）";
+      document.getElementById("Fe").innerHTML = noFe+"枚（確率"+Math.round(noFe/total*100*100)/100+"％）";
+      document.getElementById("F").innerHTML = noF+"枚（確率"+Math.round(noF/total*100*100)/100+"％）";
+      document.getElementById("As").innerHTML = noAs+"枚（確率"+Math.round(noAs/total*100*100)/100+"％）";
+      document.getElementById("Sc").innerHTML = noSc+"枚（確率"+Math.round(noSc/total*100*100)/100+"％）";
+      document.getElementById("Tc").innerHTML = noTc+"枚（確率"+Math.round(noTc/total*100*100)/100+"％）";
+    }else if(auto == "own"){
+      for(let i=0; i<10; i++){
+        var ind = i + 1;
+        var id = ("000000000" + ind).slice(-2);
+        var img = document.getElementById("card" + id);
+        img.src = "default.png";
+      }
+    }
+  }
+  </script>
+  <header>
+    <h1>ガチャガチャ</h1>
+  </header>
+  <div class="option">
+    <form name="form1">
+      <select name="continue" id="continue">
+        <option value="1" selected>1連</option>
+        <option value="2">2連</option>
+        <option value="3">3連</option>
+        <option value="4">4連</option>
+        <option value="5">5連</option>
+        <option value="6">6連</option>
+        <option value="7">7連</option>
+        <option value="8">8連</option>
+        <option value="9">9連</option>
+        <option value="10">10連</option>
+      </select>
+      <select name="automation" id="automation">
+        <option value="auto" selected>自動</option>
+        <option value="own">手動</option>
+      </select>
+    </form>
+  </div>
+  <div class="prize">
+    <div class="prize_raw">
+      <input type="image" id="card01" src="default.png" value="no_image" onclick="gatcha(1)">
+      <input type="image" id="card02" src="default.png" value="no_image" onclick="gatcha(2)">
+      <input type="image" id="card03" src="default.png" value="no_image" onclick="gatcha(3)">
+      <input type="image" id="card04" src="default.png" value="no_image" onclick="gatcha(4)">
+      <input type="image" id="card05" src="default.png" value="no_image" onclick="gatcha(5)">
+    </div>
+    <div class="prize_raw">
+      <input type="image" id="card06" src="default.png" value="no_image" onclick="gatcha(6)">
+      <input type="image" id="card07" src="default.png" value="no_image" onclick="gatcha(7)">
+      <input type="image" id="card08" src="default.png" value="no_image" onclick="gatcha(8)">
+      <input type="image" id="card09" src="default.png" value="no_image" onclick="gatcha(9)">
+      <input type="image" id="card10" src="default.png" value="no_image" onclick="gatcha(10)">
+    </div>
+  </div>
+  <div class="option">
+    <input type="button" value="retry" onclick="gatcha(0)">
+  </div>
+  <div class="main">
+    <div class="left">
+      <div class="result">
+        <ul class="total">
+          <li>
+            <div>現在の課金額</div>
+            <div id="price">0円</div>
+          </li>
+          <li>
+            <div>レアの枚数（基本確率は70%）</div>
+            <div id="no_rare">0枚</div>
+          </li>
+          <li>
+            <div>SRの枚数（基本確率は29%）</div>
+            <div id="no_srare">0枚</div>
+          </li>
+          <li>
+            <div>URの枚数（基本確率は1%）</div>
+            <div id="no_urare">0枚</div>
+          </li>
+        </ul>
+        <div class="careful">（SRとURの確率は10連の十枚目のみ80%と20%）</div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="result">
+        <ul class="total_own">
+          <li>
+            <div>R</div>
+            <div>
+              <ul class="minlist">
+                <li><div class="mini">窒素：</div><div id="N" class="mini">0枚</div></li>
+                <li><div class="mini">酸素：</div><div id="O" class="mini">0枚</div></li>
+                <li><div class="mini">鉄：</div><div id="Fe" class="mini">0枚</div></li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div>SR</div>
+            <div>
+              <ul class="minlist">
+                <li><div class="mini">フッ素：</div><div id="F" class="mini">0枚</div></li>
+                <li><div class="mini">砒素：</div><div id="As" class="mini">0枚</div></li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div>UR</div>
+            <div>
+              <ul class="minlist">
+                <li><div class="mini">スカンジウム：</div><div id="Sc" class="mini">0枚</div></li>
+                <li><div class="mini">テクネチウム：</div><div id="Tc" class="mini">0枚</div></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

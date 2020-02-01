@@ -1,0 +1,107 @@
+@charset "utf-8";
+body{
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+header{
+    text-align: center;
+    background-color: #eeeeff;
+    margin: 15px;
+    border: 2px;
+    border-color: #9999ff;
+    border-style: solid;
+}
+header h1{
+    font-size: 5vmin;
+}
+
+.option{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    background-color: #dddddd;
+    width: 30vmin;
+}
+.option > input{
+    width: 100%;
+    font-size: 2.5vmin;
+}
+.option form select{
+    font-size: 2vmin;
+    text-align: center;
+    border: 1px;
+    border-color: #999999;
+    border-style: solid;
+}
+.option form select option{
+    font-size: 1.5vmin;
+}
+#continue{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 11vmin;
+    text-align: center;
+}
+#continue option{
+    text-align: center;
+}
+#automation{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 11vmin;
+    text-align: center;
+}
+
+.prize{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 90vmin;
+    margin: auto;
+    margin-top: 10px;
+}
+.prize > .prize_raw{
+    width: 100%
+}
+.prize > .prize_raw > input{
+    width: 18%;
+    margin: 0px;
+}
+.main > .left{
+    width: 60%;
+    float: left;
+    text-align: center;
+}
+.main > .right{
+    width: 40%;
+    float: right;
+    text-align: center;
+}
+.result{
+    display: inline-block;
+    text-align: left;
+}
+.total li{
+    list-style: none;
+    font-size: 2.5vmin;
+}
+.total_own li{
+    font-size: 2vmin;
+}
+.minlist{
+    margin-left: 5px;
+}
+.minlist li{
+    font-size: 1.7vmin;
+}
+.mini{
+    display: inline;
+}
+.careful{
+    font-size: 2vmin;
+    color: #888888;
+}
